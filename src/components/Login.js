@@ -8,48 +8,61 @@ import axiosWithAuth from '../utils/axiosWithAuth';
 const Login = () => {
     const { push } = useHistory();
     const [ user, setUser ] = useState({
-        username:"",
-        password:"",
-        errorMessage:""
+        credentials: {
+            username:"",
+            password:""
+        
+        }
+        
+        
     });
+
+    const [ error, setError ] = useState(null);
 
     const handleChange = (e) => {
         setUser({
             ...user,
-            [e.target.name]:e.target.value
+            credentials: {
+                ...user.credentials,
+                [e.target.name]:e.target.value
+            }
+            
         })
     }
-    const handleSubmit = (e) => {
+
+    const handleLogin = (e) => {
         e.preventDefault();
         console.log(user);
-        axiosWithAuth().post('/login', user)
+        axiosWithAuth().post('/login', user.credentials)
         .then(resp=> {
-            localStorage.setItem("token", resp.data.payload);
+            localStorage.setItem("token", resp.data.token);
+            localStorage.setItem("username", resp.data.username);
             push('/view');
         })
         .catch(err=> {
             console.log(err);
+            setError("Invalid Login");
         });
     }
     return(<ComponentContainer>
         <ModalContainer>
             <h1>Welcome to Blogger Pro</h1>
             <h2>Please enter your account information.</h2>
-        <FormGroup onSubmit={handleSubmit}>
+        <FormGroup onSubmit={handleLogin}>
             <div>
             <Label htmlFor="username">Username:
-            <Input onChange={handleChange} name="username" id="username" value={user.username}/>
+            <Input onChange={handleChange} type="text" name="username" id="username" value={user.credentials.username}/>
             </Label>
             </div>
             <div>
                 <Label htmlFor="password">Password:
-                <Input onChange={handleChange} type="password" name="password" id="password" value={user.password}/>
+                <Input onChange={handleChange} type="password" name="password" id="password" value={user.credentials.password}/>
                 </Label>
             </div>
             <Button id="submit">Submit</Button>
         </FormGroup>
         {
-            <p id="error">{user.errorMessage}</p>
+            !error ? <p></p> : <p id="error">{error}</p>
         }
         </ModalContainer>
     </ComponentContainer>);
