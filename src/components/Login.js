@@ -32,7 +32,6 @@ const Login = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        console.log(user);
         axiosWithAuth().post('/login', user.credentials)
         .then(resp=> {
             localStorage.setItem("token", resp.data.token);
