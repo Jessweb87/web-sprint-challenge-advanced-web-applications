@@ -40,7 +40,7 @@ const Login = () => {
             push('/view');
         })
         .catch(err=> {
-            console.log(err);
+            // console.log(err);
             setError("Invalid Login");
         });
     }
