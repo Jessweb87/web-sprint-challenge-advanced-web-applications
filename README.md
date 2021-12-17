@@ -13,9 +13,9 @@ You are not allowed to collaborate during the sprint challenge.
 In this challenge you will create a login page and request a token from the server that you'll use to send all other requests to the server. You will then be able to fetch the article data array, update data, and delete data.
 
 ## Project Setup
-[ ] Run npm install to install your dependencies.
-[ ]  Run npm start to run your frontend and backend code automatically.
-[ ]  Note your backend code will run automatically when your run npm start. There is no need to seperately run a server.js file and no means to test the server through postman or the browser. Feel free to ignore any messages related to MSW or mock service workers.
+[X] Run npm install to install your dependencies.
+[X]  Run npm start to run your frontend and backend code automatically.
+[X]  Note your backend code will run automatically when your run npm start. There is no need to seperately run a server.js file and no means to test the server through postman or the browser. Feel free to ignore any messages related to MSW or mock service workers.
 
 ## Project Instructions
 In this project, you will demonstrate your mastery of these skills by creating **a login page** and **basic CRUD application.** You will implement basic security using **token authentication** and build private routes within the application.
@@ -117,9 +117,14 @@ In this project, you will demonstrate your mastery of these skills by creating *
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. Add your answers below.
 
 1. Explain what a token is used for.
+An authentication token is used to tell servers who users are. Its a part of the process of showing you are who you say you are.
 
 2. What steps can you take in your web apps to keep your data secure?
+There are a few steps we can take. One is creating protected routes for certain states of our application. In order to access these areas we can utilize authorization tokens. axiosWithAuth creates a sortof gate for our HTTP methods and will forbid any unauthorized users to manipulate or view data in places they arent allowed.
+
 
 3. Describe how web servers work.
+A web server is a computer that stores code for a website, or a program that runs on this computer. These servers share code across the world at all times. When we load a site, its served to us by these servers, upon user request.
 
 4. Which HTTP methods can be mapped to the CRUD acronym that we use when interfacing with APIs/Servers.
+POST, GET, PUT, DELETE Create, Read, Update, Delete
