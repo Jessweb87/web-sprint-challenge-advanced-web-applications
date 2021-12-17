@@ -116,7 +116,7 @@ In this project, you will demonstrate your mastery of these skills by creating *
 
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. Add your answers below.
 
-1. Explain what a token is used for.
+1. Explain what a token is used for. 
 
 An authentication token is used to tell servers who users are. Its a part of the process of showing you are who you say you are.
 
