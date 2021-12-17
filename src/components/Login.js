@@ -9,7 +9,8 @@ const Login = () => {
     const { push } = useHistory();
     const [ user, setUser ] = useState({
         username:"",
-        password:""
+        password:"",
+        errorMessage:""
     });
 
     const handleChange = (e) => {
@@ -23,7 +24,7 @@ const Login = () => {
         console.log(user);
         axiosWithAuth().post('/login', user)
         .then(resp=> {
-            localStorage.setItem("token", resp.dat.payload);
+            localStorage.setItem("token", resp.data.payload);
             push('/view');
         })
         .catch(err=> {
@@ -42,11 +43,14 @@ const Login = () => {
             </div>
             <div>
                 <Label htmlFor="password">Password:
-                <Input onChange={handleChange} type="password" name="passowrd" id="password" value={user.password}/>
+                <Input onChange={handleChange} type="password" name="password" id="password" value={user.password}/>
                 </Label>
             </div>
             <Button id="submit">Submit</Button>
         </FormGroup>
+        {
+            <p id="error">{user.errorMessage}</p>
+        }
         </ModalContainer>
     </ComponentContainer>);
 
